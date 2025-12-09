@@ -2,7 +2,10 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    products: Array,
+    products: {
+        type: Array,
+        required: true
+    }
 });
 
 const subtotal = (product) => {
@@ -10,11 +13,11 @@ const subtotal = (product) => {
 };
 
 const total = computed(() => {
-    let total = 0;
+    let result = 0;
     for (let product of props.products) {
-        total += subtotal(product);
+        result += subtotal(product);
     }
-    return total;
+    return result;
 });
 </script>
 
