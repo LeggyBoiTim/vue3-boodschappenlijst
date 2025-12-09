@@ -8,6 +8,10 @@ const products = ref([
     { name: 'Noten', price: 2.99, amount: 0 }
 ]);
 
+const subtotal = (product) => {
+    return product.price * product.amount;
+};
+
 const total = computed(() => {
     let total = 0;
     for (let product of products.value) {
@@ -32,7 +36,7 @@ const total = computed(() => {
                 <td>{{ product.name }}</td>
                 <td>{{ parseFloat(product.price).toFixed(2) }}</td>
                 <td><input v-model="product.amount" type="number" min="0" step="1" value="0"></td>
-                <td>{{ parseFloat(product.price * product.amount).toFixed(2) }}</td>
+                <td>{{ parseFloat(subtotal(product)).toFixed(2) }}</td>
             </tr>
         </tbody>
         <tfoot>
