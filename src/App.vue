@@ -1,18 +1,19 @@
 <script setup>
-import { ref } from 'vue';
-import GroceriesTable from './components/GroceriesTable.vue';
-
-const products = ref([
-    { name: 'Rijst', price: 1.00, amount: 0 },
-    { name: 'Broccoli', price: 0.99, amount: 0 },
-    { name: 'Koekjes', price: 1.20, amount: 0 },
-    { name: 'Noten', price: 2.99, amount: 0 }
-]);
 </script>
 
 <template>
-    <GroceriesTable :products="products" />
+    <nav>
+        <RouterLink to="/create">Maak Boodschappenlijst</RouterLink>
+        <RouterLink to="/overview">Overzicht</RouterLink>
+    </nav>
+    <h1>{{ $route.fullPath }}</h1>
+    <main>
+        <RouterView />
+    </main>
 </template>
 
 <style scoped>
+nav > * {
+    padding: 10px;
+}
 </style>
