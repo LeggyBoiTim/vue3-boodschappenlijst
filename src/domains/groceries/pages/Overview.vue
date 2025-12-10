@@ -8,10 +8,15 @@ const products = ref([
     { name: 'Koekjes', price: 1.20, amount: 0 },
     { name: 'Noten', price: 2.99, amount: 0 }
 ]);
+
+const readInput = (id, value) => {
+    products.value[id].amount = value;
+}
+
 </script>
 
 <template>
-    <GroceriesTable :products="products" />
+    <GroceriesTable :products="products" @input="readInput"/>
 </template>
 
 <style scoped>
