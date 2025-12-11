@@ -6,7 +6,7 @@ const grocery = {name: '', price: 0, amount: 0};
 </script>
 
 <template>
-    <GroceryForm :grocery="grocery" @sumbit="addGrocery"/>
+    <GroceryForm :grocery="grocery" @submit="addGrocery"/>
 </template>
 
 <style scoped>

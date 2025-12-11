@@ -9,8 +9,13 @@ const props = defineProps({
 
 const emit = defineEmits(['submit']);
 
-const handleSubmit = (object) => {
-    emit('submit', console.log(object)); // object.target.name.value, object.target.price.value, object.target.amount.value
+const handleSubmit = (event) => {
+    const grocery = {
+        name: event.target.name.value,
+        price: event.target.price.value,
+        amount: event.target.amount.value
+    }
+    emit('submit', grocery);
 };
 </script>
 

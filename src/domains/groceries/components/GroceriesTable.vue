@@ -10,8 +10,8 @@ const props = defineProps({
 
 const emit = defineEmits(['input']);
 
-const handleInput = (e) => {
-    emit('input', e.target.id, e.target.value);
+const handleInput = (event) => {
+    emit('input', event.target.id, event.target.value);
 };
 
 const subtotal = (grocery) => {
@@ -41,8 +41,9 @@ const total = computed(() => {
             <tr v-for="(grocery, index) in props.groceries" :key="index">
                 <td>{{ grocery.name }}</td>
                 <td>{{ parseFloat(grocery.price).toFixed(2) }}</td>
-                <td><input @input="handleInput" :id="index" type="number" min="0" step="1" value="0"></td>
+                <td><input @input="handleInput" :id="index" type="number" min="0" step="1" :value="grocery.amount"></td>
                 <td>{{ parseFloat(subtotal(grocery)).toFixed(2) }}</td>
+                <td><RouterLink :to="'/edit/' + index">Bewerk</RouterLink></td>
             </tr>
         </tbody>
         <tfoot>
@@ -66,5 +67,9 @@ thead, tbody td:first-child, tfoot th {
 td, th {
     border: 1px solid #888;
     padding: 10px;
+}
+
+tbody td:last-child {
+    border: none;
 }
 </style>
