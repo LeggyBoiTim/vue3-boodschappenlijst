@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 
 const props = defineProps({
-    products: {
+    groceries: {
         type: Array,
         required: true
     }
@@ -11,17 +11,17 @@ const props = defineProps({
 const emit = defineEmits(['input']);
 
 const handleInput = (e) => {
-    emit('input', e.target.id, e.target.value)
-}
+    emit('input', e.target.id, e.target.value);
+};
 
-const subtotal = (product) => {
-    return product.price * product.amount;
+const subtotal = (grocery) => {
+    return grocery.price * grocery.amount;
 };
 
 const total = computed(() => {
     let result = 0;
-    for (let product of props.products) {
-        result += subtotal(product);
+    for (let grocery of props.groceries) {
+        result += subtotal(grocery);
     }
     return result;
 });
@@ -38,11 +38,11 @@ const total = computed(() => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(product, index) in props.products" :key="index">
-                <td>{{ product.name }}</td>
-                <td>{{ parseFloat(product.price).toFixed(2) }}</td>
+            <tr v-for="(grocery, index) in props.groceries" :key="index">
+                <td>{{ grocery.name }}</td>
+                <td>{{ parseFloat(grocery.price).toFixed(2) }}</td>
                 <td><input @input="handleInput" :id="index" type="number" min="0" step="1" value="0"></td>
-                <td>{{ parseFloat(subtotal(product)).toFixed(2) }}</td>
+                <td>{{ parseFloat(subtotal(grocery)).toFixed(2) }}</td>
             </tr>
         </tbody>
         <tfoot>
