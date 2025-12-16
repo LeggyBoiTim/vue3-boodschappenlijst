@@ -1,15 +1,13 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import GroceryForm from '../components/GroceryForm.vue';
-import { addGrocery, getGroceryById } from '../store';
+import { getGroceryById, updateGrocery } from '../store';
 
-const grocery = getGroceryById(useRoute().params.id);
-
-console.log(grocery);
+const grocery = getGroceryById(useRoute().params.id).value;
 </script>
 
 <template>
-    <!-- <GroceryForm :grocery="grocery" @submit="addGrocery"/> -->
+    <GroceryForm :grocery="grocery" @submit="updateGrocery"/>
 </template>
 
 <style scoped>

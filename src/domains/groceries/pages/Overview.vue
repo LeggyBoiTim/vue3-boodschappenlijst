@@ -1,11 +1,11 @@
 <script setup>
 import GroceriesTable from '../components/GroceriesTable.vue';
-import { getAllGroceries } from '../store';
+import { getAllGroceries, getGroceryIndexById } from '../store';
 
 const groceries = getAllGroceries;
 
 const readInput = (id, value) => {
-    groceries.value[id].amount = value;
+    groceries.value[getGroceryIndexById(id).value].amount = value;
 }
 </script>
 

@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { removeGrocery } from '../store';
 
 const props = defineProps({
     groceries: {
@@ -38,12 +39,13 @@ const total = computed(() => {
             </tr>
         </thead>
         <tbody>
-            <tr v-for="(grocery, index) in props.groceries" :key="index">
+            <tr v-for="(grocery) in props.groceries" :key="grocery.id">
                 <td>{{ grocery.name }}</td>
                 <td>{{ parseFloat(grocery.price).toFixed(2) }}</td>
-                <td><input @input="handleInput" :id="index" type="number" min="0" step="1" :value="grocery.amount"></td>
+                <td><input @input="handleInput" :id="grocery.id" type="number" min="0" step="1" :value="grocery.amount"></td>
                 <td>{{ parseFloat(subtotal(grocery)).toFixed(2) }}</td>
-                <td><RouterLink :to="'/edit/' + index">Bewerk</RouterLink></td>
+                <td><RouterLink :to="'/edit/' + grocery.id">Bewerk</RouterLink></td>
+                <td><a @click="removeGrocery(grocery)">Verwijder</a></td>
             </tr>
         </tbody>
         <tfoot>
@@ -69,7 +71,11 @@ td, th {
     padding: 10px;
 }
 
-tbody td:last-child {
+tbody td:nth-last-child(-n+2) {
     border: none;
+}
+
+a {
+    cursor: pointer;
 }
 </style>

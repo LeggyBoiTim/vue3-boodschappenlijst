@@ -13,7 +13,8 @@ const handleSubmit = (event) => {
     const grocery = {
         name: event.target.name.value,
         price: event.target.price.value,
-        amount: event.target.amount.value
+        amount: event.target.amount.value,
+        id: event.target.id.value
     }
     emit('submit', grocery);
 };
@@ -21,9 +22,10 @@ const handleSubmit = (event) => {
 
 <template>
     <form @submit.prevent="handleSubmit">
-        <p>Product: <input id="name" name="name" type="text" :value="grocery.name" required></p>
-        <p>Prijs: <input id="price" name="price" type="number" min="0" step=".01" :value="parseFloat(grocery.price).toFixed(2)"></p>
-        <p>Aantal: <input id="amount" name="amount" type="number" min="0" step="1" :value="grocery.amount"></p></br>
+        <p>Product: <input name="name" type="text" :value="grocery.name" required></p>
+        <p>Prijs: <input name="price" type="number" min="0" step=".01" :value="parseFloat(grocery.price).toFixed(2)"></p>
+        <p>Aantal: <input name="amount" type="number" min="0" step="1" :value="grocery.amount"></p></br>
+        <input name="id" type="hidden" :value="grocery.id">
         <button type="submit">Toevoegen</button>
     </form>
 </template>

@@ -3,7 +3,7 @@
 
 <template>
     <nav>
-        <RouterLink to="/create">Maak Boodschappenlijst</RouterLink>
+        <RouterLink to="/create">Voeg Toe</RouterLink>
         <RouterLink to="/overview">Overzicht</RouterLink>
     </nav>
     <h1>{{ $route.fullPath }}</h1>
