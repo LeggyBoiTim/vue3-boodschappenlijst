@@ -1,6 +1,4 @@
 <script setup>
-import { useRouter } from 'vue-router';
-
 
 const props = defineProps({
     grocery: {
@@ -19,7 +17,6 @@ const handleSubmit = (event) => {
         id: event.target.id.value
     };
     emit('submit', grocery);
-    useRouter('/overview');
 }
 </script>
 
