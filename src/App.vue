@@ -6,7 +6,7 @@
         <RouterLink to="/create">Voeg Toe</RouterLink>
         <RouterLink to="/overview">Overzicht</RouterLink>
     </nav>
-    <h1>{{ $route.fullPath }}</h1>
+    <br>
     <main>
         <RouterView />
     </main>

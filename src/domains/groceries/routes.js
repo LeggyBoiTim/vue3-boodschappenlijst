@@ -5,5 +5,5 @@ import Overview from './pages/Overview.vue';
 export const routes = [
     { path: '/create', component: Create },
     { path: '/edit/:id', component: Edit },
-    { path: '/overview', component: Overview },
+    { path: '/overview', component: Overview, alias: '/' },
 ];
