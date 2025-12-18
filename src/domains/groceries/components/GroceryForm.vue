@@ -1,4 +1,7 @@
 <script setup>
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const props = defineProps({
     grocery: {
@@ -6,6 +9,8 @@ const props = defineProps({
         required: true
     }
 });
+
+const grocery = props.grocery;
 
 const emit = defineEmits(['submit']);
 
@@ -17,6 +22,7 @@ const handleSubmit = (event) => {
         id: event.target.id.value
     };
     emit('submit', grocery);
+    router.push('/overview');
 }
 </script>
 
@@ -26,7 +32,7 @@ const handleSubmit = (event) => {
         <p>Prijs: <input name="price" type="number" min="0" step=".01" :value="parseFloat(grocery.price).toFixed(2)"></p>
         <p>Aantal: <input name="amount" type="number" min="0" step="1" :value="grocery.amount"></p></br>
         <input name="id" type="hidden" :value="grocery.id">
-        <button type="submit">Toevoegen</button>
+        <button type="submit">{{ router.currentRoute.value.path === '/create' ? 'Toevoegen' : 'Bewerken' }}</button>
     </form>
 </template>
 
